@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Gabriel Kaique Portel Silva — AI Engineer, Analista de Dados, Dev Python e Process Automation Engineer. Portfólio profissional, projetos e contato.">
+<meta name="keywords" content="Gabriel Kaique, AI Engineer, Analista de Dados, Python Developer, Process Automation, LangChain, FastAPI, Power BI, Machine Learning, Rondônia">
+<meta property="og:title" content="Gabriel Kaique — AI & Data Portfolio">
+<meta property="og:description" content="Especialista em IA, Dados, Python e Automação. Aberto a oportunidades e freelance.">
+<meta property="og:type" content="website">
+<title>Gabriel Kaique | AI & Data Portfolio</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #050A14;
+    --bg2: #0B1220;
+    --bg3: #101828;
+    --card: #111827;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --accent: #3B82F6;
+    --accent2: #60A5FA;
+    --accent3: #93C5FD;
+    --gold: #F59E0B;
+    --green: #10B981;
+    --purple: #8B5CF6;
+    --pink: #EC4899;
+    --text: #F1F5F9;
+    --muted: #94A3B8;
+    --muted2: #64748B;
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --radius: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  /* ── GLOW ORBS ── */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.18;
+  }
+  .orb-1 { width: 600px; height: 600px; background: #1D4ED8; top: -200px; right: -100px; }
+  .orb-2 { width: 500px; height: 500px; background: #7C3AED; bottom: 20%; left: -150px; }
+  .orb-3 { width: 400px; height: 400px; background: #0891B2; bottom: -100px; right: 20%; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    height: 64px;
+    background: rgba(5,10,20,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: #fff !important;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: #2563EB !important; }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* ── MAIN WRAPPER ── */
+  main { position: relative; z-index: 1; }
+
+  section { padding: 6rem 5%; }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 100px;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(59,130,246,0.1);
+    border: 1px solid rgba(59,130,246,0.25);
+    color: var(--accent3);
+    font-size: 0.8rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .hero-badge::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero-title {
+    font-family: var(--font-head);
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-title .line2 {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 60%, var(--pink) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-desc {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+    max-width: 480px;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .tag {
+    background: var(--card);
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    font-size: 0.78rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    font-weight: 400;
+    transition: all 0.2s;
+  }
+
+  .tag:hover {
+    border-color: var(--accent);
+    color: var(--accent3);
+    background: rgba(59,130,246,0.05);
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.7rem 1.5rem;
+    border-radius: var(--radius);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover { background: #2563EB; transform: translateY(-1px); }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--text);
+    padding: 0.7rem 1.5rem;
+    border-radius: var(--radius);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border: 1px solid var(--border2);
+    transition: all 0.2s;
+  }
+
+  .btn-outline:hover {
+    background: var(--card);
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  /* ── PROFILE CARD (HERO RIGHT) ── */
+  .profile-card {
+    background: var(--card);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .profile-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--purple), var(--pink));
+  }
+
+  .profile-img-wrapper {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 1.25rem;
+    border: 3px solid var(--accent);
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-head);
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fff;
+    position: relative;
+  }
+
+  .profile-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    display: none;
+  }
+
+  .profile-img-wrapper img.loaded { display: block; }
+
+  .profile-name {
+    font-family: var(--font-head);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 0.25rem;
+  }
+
+  .profile-role {
+    color: var(--accent3);
+    font-size: 0.83rem;
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .profile-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .stat-box {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.75rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: var(--font-head);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    color: var(--muted2);
+    margin-top: 2px;
+  }
+
+  .profile-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .profile-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 0.82rem;
+    text-decoration: none;
+    padding: 0.4rem 0.6rem;
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+
+  .profile-link:hover {
+    color: var(--text);
+    background: var(--bg2);
+  }
+
+  .profile-link svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+  /* ── SECTION HEADER ── */
+  .section-label {
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: var(--font-head);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    color: var(--muted);
+    max-width: 540px;
+    margin-bottom: 3rem;
+  }
+
+  /* ── SPECIALTIES ── */
+  #especialidades { background: var(--bg2); }
+
+  .spec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .spec-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    transition: all 0.3s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .spec-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+
+  .spec-card.blue::after { background: var(--accent); }
+  .spec-card.purple::after { background: var(--purple); }
+  .spec-card.green::after { background: var(--green); }
+  .spec-card.gold::after { background: var(--gold); }
+
+  .spec-card:hover { border-color: var(--border2); transform: translateY(-4px); }
+  .spec-card:hover::after { transform: scaleX(1); }
+
+  .spec-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+
+  .spec-card.blue .spec-icon { background: rgba(59,130,246,0.12); }
+  .spec-card.purple .spec-icon { background: rgba(139,92,246,0.12); }
+  .spec-card.green .spec-icon { background: rgba(16,185,129,0.12); }
+  .spec-card.gold .spec-icon { background: rgba(245,158,11,0.12); }
+
+  .spec-title {
+    font-family: var(--font-head);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .spec-desc {
+    color: var(--muted);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .spec-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+
+  .skill-pill {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  .spec-card.blue .skill-pill { background: rgba(59,130,246,0.1); color: var(--accent3); }
+  .spec-card.purple .skill-pill { background: rgba(139,92,246,0.1); color: #C4B5FD; }
+  .spec-card.green .skill-pill { background: rgba(16,185,129,0.1); color: #6EE7B7; }
+  .spec-card.gold .skill-pill { background: rgba(245,158,11,0.1); color: #FCD34D; }
+
+  /* ── CV DOWNLOAD ── */
+  #curriculos { background: var(--bg); }
+
+  .cv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .cv-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: all 0.25s;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .cv-card:hover {
+    border-color: var(--accent);
+    background: rgba(59,130,246,0.04);
+    transform: translateY(-3px);
+  }
+
+  .cv-card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: rgba(59,130,246,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+  }
+
+  .cv-title {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+
+  .cv-sub {
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  .cv-download-hint {
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* ── PROJETOS ── */
+  #projetos { background: var(--bg2); }
+
+  .proj-tabs {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  .proj-tab {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-body);
+  }
+
+  .proj-tab:hover, .proj-tab.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .proj-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .proj-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    transition: all 0.25s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .proj-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-3px);
+  }
+
+  .proj-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .proj-category {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+
+  .cat-dados { background: rgba(59,130,246,0.1); color: var(--accent3); }
+  .cat-python { background: rgba(16,185,129,0.1); color: #6EE7B7; }
+  .cat-ai { background: rgba(139,92,246,0.1); color: #C4B5FD; }
+  .cat-automation { background: rgba(245,158,11,0.1); color: #FCD34D; }
+
+  .proj-name {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 0.95rem;
+    line-height: 1.3;
+  }
+
+  .proj-desc {
+    color: var(--muted);
+    font-size: 0.83rem;
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .proj-techs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+
+  .proj-tech {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--muted2);
+    font-size: 0.7rem;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+  }
+
+  .proj-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--accent);
+    font-size: 0.8rem;
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 0.25rem;
+    transition: gap 0.2s;
+  }
+
+  .proj-link:hover { gap: 8px; }
+
+  /* ── EXPERIÊNCIA ── */
+  #experiencia { background: var(--bg); }
+
+  .exp-list { display: flex; flex-direction: column; gap: 0; }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .exp-item:last-child { border-bottom: none; }
+
+  .exp-period {
+    color: var(--muted2);
+    font-size: 0.82rem;
+    padding-top: 0.25rem;
+  }
+
+  .exp-company {
+    font-family: var(--font-head);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+  }
+
+  .exp-role {
+    font-family: var(--font-head);
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .exp-desc {
+    color: var(--muted);
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
+
+  /* ── SOBRE / STACK ── */
+  #sobre { background: var(--bg2); }
+
+  .sobre-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .sobre-text p {
+    color: var(--muted);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  .sobre-text strong { color: var(--text); font-weight: 500; }
+
+  .stack-section { }
+
+  .stack-group { margin-bottom: 1.75rem; }
+
+  .stack-group-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--muted2);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .stack-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .stack-pill {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.78rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+
+  .stack-pill:hover {
+    border-color: var(--accent);
+    color: var(--accent3);
+  }
+
+  /* ── CONTATO ── */
+  #contato { background: var(--bg); }
+
+  .contato-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contato-items { display: flex; flex-direction: column; gap: 1rem; }
+
+  .contato-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s;
+  }
+
+  .contato-item:hover {
+    border-color: var(--accent);
+    background: rgba(59,130,246,0.04);
+    transform: translateX(4px);
+  }
+
+  .contato-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: rgba(59,130,246,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+  }
+
+  .contato-label {
+    font-size: 0.75rem;
+    color: var(--muted2);
+  }
+
+  .contato-value {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .freelance-box {
+    background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.08));
+    border: 1px solid rgba(59,130,246,0.2);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+  }
+
+  .freelance-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.25);
+    color: #6EE7B7;
+    font-size: 0.78rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .freelance-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  .freelance-title {
+    font-family: var(--font-head);
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+  }
+
+  .freelance-desc {
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .services-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .services-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .services-list li::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    padding: 2rem 5%;
+    text-align: center;
+    color: var(--muted2);
+    font-size: 0.82rem;
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: var(--bg2);
+      padding: 1.5rem 5%;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+      z-index: 99;
+    }
+    .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .profile-card { max-width: 340px; margin: 0 auto; }
+    .sobre-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .contato-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .exp-period { padding-top: 0; }
+    section { padding: 4rem 5%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">GK<span>.</span></a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#especialidades">Especialidades</a></li>
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#experiencia">Experiência</a></li>
+    <li><a href="#sobre">Stack</a></li>
+    <li><a href="#curriculos">Currículos</a></li>
+    <li><a href="#contato" class="nav-cta">Contato</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-left reveal">
+      <div class="hero-badge">Aberto a oportunidades e freelance</div>
+
+      <h1 class="hero-title">
+        Gabriel Kaique<br>
+        <span class="line2">Portel Silva</span>
+      </h1>
+
+      <p class="hero-desc">
+        Especialista em <strong>Inteligência Artificial</strong>, Análise de Dados, Python e Automação de Processos. Transformo dados e IA em soluções reais que economizam tempo e geram resultado.
+      </p>
+
+      <div class="hero-tags">
+        <span class="tag">AI Engineer</span>
+        <span class="tag">Analista de Dados</span>
+        <span class="tag">Dev Python</span>
+        <span class="tag">Process Automation</span>
+        <span class="tag">LLMs & RAG</span>
+        <span class="tag">MLOps</span>
+        <span class="tag">FastAPI</span>
+        <span class="tag">Power BI</span>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="#contato" class="btn-primary">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+          Entrar em Contato
+        </a>
+        <a href="#projetos" class="btn-outline">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          Ver Projetos
+        </a>
+      </div>
+    </div>
+
+    <div class="reveal" style="transition-delay:0.15s">
+      <div class="profile-card">
+        <div class="profile-img-wrapper" id="profile-img-wrapper">
+          GK
+          <!-- Substitua o src pelo link da sua foto quando subir no GitHub -->
+          <img src="foto1.JPG" alt="Gabriel Kaique" id="profile-photo" onload="this.classList.add('loaded')">
+        </div>
+        <div class="profile-name">Gabriel Kaique Portel Silva</div>
+        <div class="profile-role">AI Engineer &amp; Data Specialist · Pimenta Bueno, RO</div>
+
+        <div class="profile-stats">
+          <div class="stat-box">
+            <div class="stat-num">4</div>
+            <div class="stat-label">Especialidades</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">20+</div>
+            <div class="stat-label">Projetos GitHub</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">3+</div>
+            <div class="stat-label">Anos de XP</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">✓</div>
+            <div class="stat-label">Freelance Aberto</div>
+          </div>
+        </div>
+
+        <div class="profile-links">
+          <a href="https://linkedin.com/in/gabriel-kaique-881475284" target="_blank" class="profile-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            linkedin.com/in/gabriel-kaique
+          </a>
+          <a href="https://github.com/Kaique-ML" target="_blank" class="profile-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+            github.com/Kaique-ML
+          </a>
+          <a href="mailto:portelsilvag@gmail.com" class="profile-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+            portelsilvag@gmail.com
+          </a>
+          <a href="tel:+5569999539568" class="profile-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012.18 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.4a16 16 0 006.69 6.69l1.76-1.52a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            +55 (69) 99953-9568
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESPECIALIDADES -->
+<section id="especialidades">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">O que eu faço</div>
+      <h2 class="section-title">4 Especialidades, 1 Profissional</h2>
+      <p class="section-desc">Cada área é tratada com profundidade técnica e foco em resultado de negócio.</p>
+    </div>
+
+    <div class="spec-grid">
+      <div class="spec-card blue reveal" style="transition-delay:0.05s">
+        <div class="spec-icon">📊</div>
+        <div class="spec-title">Analista de Dados</div>
+        <p class="spec-desc">Transformo dados brutos em insights acionáveis com pipelines ETL, dashboards interativos e modelos preditivos.</p>
+        <div class="spec-skills">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">Power BI</span>
+          <span class="skill-pill">Airflow</span>
+          <span class="skill-pill">dbt</span>
+          <span class="skill-pill">AWS</span>
+        </div>
+      </div>
+
+      <div class="spec-card purple reveal" style="transition-delay:0.1s">
+        <div class="spec-icon">🤖</div>
+        <div class="spec-title">AI Engineer</div>
+        <p class="spec-desc">Desenvolvo sistemas com LLMs, RAG, agentes autônomos e MLOps. Do modelo ao deploy em produção.</p>
+        <div class="spec-skills">
+          <span class="skill-pill">LangChain</span>
+          <span class="skill-pill">GPT-4o</span>
+          <span class="skill-pill">RAG</span>
+          <span class="skill-pill">CrewAI</span>
+          <span class="skill-pill">MLflow</span>
+          <span class="skill-pill">PyTorch</span>
+        </div>
+      </div>
+
+      <div class="spec-card green reveal" style="transition-delay:0.15s">
+        <div class="spec-icon">🐍</div>
+        <div class="spec-title">Desenvolvedor Python</div>
+        <p class="spec-desc">APIs robustas, microserviços, scraping e ferramentas CLI com código limpo, testado e containerizado.</p>
+        <div class="spec-skills">
+          <span class="skill-pill">FastAPI</span>
+          <span class="skill-pill">Docker</span>
+          <span class="skill-pill">pytest</span>
+          <span class="skill-pill">Celery</span>
+          <span class="skill-pill">PostgreSQL</span>
+          <span class="skill-pill">Redis</span>
+        </div>
+      </div>
+
+      <div class="spec-card gold reveal" style="transition-delay:0.2s">
+        <div class="spec-icon">⚙️</div>
+        <div class="spec-title">Process Automation Eng.</div>
+        <p class="spec-desc">Elimino trabalho manual com RPA, bots inteligentes, integrações de APIs e workflows automatizados.</p>
+        <div class="spec-skills">
+          <span class="skill-pill">Selenium</span>
+          <span class="skill-pill">Playwright</span>
+          <span class="skill-pill">n8n</span>
+          <span class="skill-pill">Airflow</span>
+          <span class="skill-pill">Slack API</span>
+          <span class="skill-pill">WhatsApp</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRÍCULOS -->
+<section id="curriculos">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Download</div>
+      <h2 class="section-title">Currículos Especializados</h2>
+      <p class="section-desc">Um currículo específico para cada área, otimizado para sistemas ATS.</p>
+    </div>
+
+    <div class="cv-grid reveal">
+      <a href="curriculos/Gabriel_Silva_Analista_Dados.pdf" download class="cv-card">
+        <div class="cv-card-icon">📊</div>
+        <div class="cv-title">Analista de Dados</div>
+        <div class="cv-sub">Python · SQL · Power BI · ETL · ML</div>
+        <div class="cv-download-hint">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar PDF
+        </div>
+      </a>
+
+      <a href="curriculos/Gabriel_Silva_Desenvolvedor_Python.pdf" download class="cv-card">
+        <div class="cv-card-icon">🐍</div>
+        <div class="cv-title">Desenvolvedor Python</div>
+        <div class="cv-sub">FastAPI · Docker · CI/CD · pytest</div>
+        <div class="cv-download-hint">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar PDF
+        </div>
+      </a>
+
+      <a href="curriculos/Gabriel_Silva_AI_Engineer.pdf" download class="cv-card">
+        <div class="cv-card-icon">🤖</div>
+        <div class="cv-title">AI Engineer</div>
+        <div class="cv-sub">LLMs · RAG · MLOps · SageMaker</div>
+        <div class="cv-download-hint">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar PDF
+        </div>
+      </a>
+
+      <a href="curriculos/Gabriel_Silva_Process_Automation_Engineer.pdf" download class="cv-card">
+        <div class="cv-card-icon">⚙️</div>
+        <div class="cv-title">Process Automation Eng.</div>
+        <div class="cv-sub">RPA · n8n · Airflow · AI Agents</div>
+        <div class="cv-download-hint">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar PDF
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETOS -->
+<section id="projetos">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Portfólio</div>
+      <h2 class="section-title">Projetos em Destaque</h2>
+      <p class="section-desc">20+ projetos no GitHub com documentação, testes e demos online.</p>
+    </div>
+
+    <div class="proj-tabs reveal">
+      <button class="proj-tab active" onclick="filterProjects('all', this)">Todos</button>
+      <button class="proj-tab" onclick="filterProjects('dados', this)">Dados</button>
+      <button class="proj-tab" onclick="filterProjects('ai', this)">IA</button>
+      <button class="proj-tab" onclick="filterProjects('python', this)">Python</button>
+      <button class="proj-tab" onclick="filterProjects('automation', this)">Automação</button>
+    </div>
+
+    <div class="proj-grid" id="proj-grid">
+
+      <div class="proj-card reveal" data-cat="ai">
+        <div class="proj-header">
+          <div class="proj-name">RAG Financial Analyst</div>
+          <span class="proj-category cat-ai">IA</span>
+        </div>
+        <p class="proj-desc">Analisa contratos e balanços em linguagem natural com LangChain + Pinecone + GPT-4o. 91% de precisão, citação de fontes.</p>
+        <div class="proj-techs">
+          <span class="proj-tech">LangChain</span>
+          <span class="proj-tech">Pinecone</span>
+          <span class="proj-tech">FastAPI</span>
+          <span class="proj-tech">Streamlit</span>
+        </div>
+        <a href="https://github.com/Kaique-ML/rag-financial-analyst" target="_blank" class="proj-link">Ver no GitHub →</a>
+      </div>
+
+      <div class="proj-card reveal" data-cat="dados" style="transition-delay:0.05s">
+        <div class="proj-header">
+          <div class="proj-name">Sales Dashboard Real-Time</div>
+          <span class="proj-category cat-dados">Dados</span>
+        </div>
+        <p class="proj-desc">Pipeline ETL com Airflow + dashboard Streamlit. 500K registros, modelo de churn 88% acurácia.</p>
+        <div class="proj-techs">
+          <span class="proj-tech">Airflow</span>
+          <span class="proj-tech">Streamlit</span>
+          <span class="proj-tech">PostgreSQL</span>
+          <span class="proj-tech">Scikit-learn</span>
+        </div>
+        <a href="https://github.com/Kaique-ML/sales-dashboard-realtime" target="_blank" class="proj-link">Ver no GitHub →</a>
+      </div>
+
+      <div class="proj-card reveal" data-cat="ai" style="transition-delay:0.1s">
+        <div class="proj-header">
+          <div class="proj-name">Multi-Agent Research System</div>
+          <span class="proj-category cat-ai">IA</span>
+        </div>
+        <p class="proj-desc">4 agentes CrewAI que pesquisam, verificam fatos, analisam e geram relatórios em PDF de forma autônoma.</p>
+        <div class="proj-techs">
+          <span class="proj-tech">CrewAI</span>
+          <span class="proj-tech">LangChain</span>
+          <span class="proj-tech">FastAPI</span>
+          <span class="proj-tech">GPT-4o</span>
+        </div>
+        <a href="https://github.com/Kaique-ML/multi-agent-research" target="_blank" class="proj-link">Ver no GitHub →</a>
+      </div>
+
+      <div class="proj-card reveal" data-cat="python" style="transition-delay:0.05s">
+        <div class="proj-header">
+          <div class="proj-name">FastAPI Boilerplate</div>
+          <span class="proj-category cat-python">Python</span>
+        </div>
+        <p class="proj-desc">API REST production-ready com JWT, async SQLAlchemy, Alembic, Redis, pytest 91% coverage e CI/CD.</p>
+        <div class="proj-techs">
+          <span class="proj-tech">FastAPI</span>
+          <span class="proj-tech">Docker</span>
+          <span class="proj-tech">PostgreSQL</span>
+          <span class="proj-tech">GitHub Actions</span>
+        </div>
+        <a href="https://github.com/Kaique-ML/fastapi-boilerplate" target="_blank" class="proj-link">Ver no GitHub →</a>
+      </div>
+
+      <div class="proj-card reveal" data-cat="automation" style="transition-delay:0.1s">
+        <div class="proj-header">
+          <div class="proj-name">AI Invoice Agent</div>
+          <span class="proj-category cat-automation">Automação</span>
+        </div>
+        <p class="proj-desc">Extrai dados de notas fiscais com GPT-4o Vision. 99% acurácia, integração ERP, processa qualquer layout.</p>
+        <div class="proj-techs">
+          <span class="proj-tech">GPT-4o Vision</span>
+          <span class="proj-tech">FastAPI</span>
+          <span class="proj-tech">PyMuPDF</span>
+          <span class="proj-tech">Docker</span>
+        </div>
+        <a href="https://github.com/Kaique-ML/ai-invoice-agent" target="_blank" class="proj-link">Ver no GitHub →</a>
+      </div>
+
+      <div class="proj-card reveal" data-cat="dados" style="transition-delay:0.15s">
+        <div class="proj-header">
+          <div class="proj-name">ETL Pipeline — AWS + dbt</div>
+          <span class="proj-category cat-dados">Dados</span>
+        </div>
+        <p class="proj-desc">Pipeline cloud com AWS Glue + S3 + dbt + Redshift. 5M registros/dia, testes de qualidade automáticos.</p>
+        <div class="proj-techs">
+          <span class="proj-tech">AWS Glue</span>
+          <span class="proj-tech">dbt</span>
+          <span class="proj-tech">Redshift</span>
+          <span class="proj-tech">Terraform</span>
+        </div>
+        <a href="https://github.com/Kaique-ML/etl-pipeline-aws" target="_blank" class="proj-link">Ver no GitHub →</a>
+      </div>
+
+      <div class="proj-card reveal" data-cat="ai" style="transition-delay:0.1s">
+        <div class="proj-header">
+          <div class="proj-name">LLM Fine-tuning — Llama 3</div>
+          <span class="proj-category cat-ai">IA</span>
+        </div>
+        <p class="proj-desc">Fine-tuning eficiente com LoRA/QLoRA em 8GB VRAM. Deploy via llama.cpp + FastAPI. ROUGE-L de 0.31 → 0.67.</p>
+        <div class="proj-techs">
+          <span class="proj-tech">PyTorch</span>
+          <span class="proj-tech">HuggingFace</span>
+          <span class="proj-tech">LoRA</span>
+          <span class="proj-tech">FastAPI</span>
+        </div>
+        <a href="https://github.com/Kaique-ML/llm-finetuning-llama3" target="_blank" class="proj-link">Ver no GitHub →</a>
+      </div>
+
+      <div class="proj-card reveal" data-cat="automation" style="transition-delay:0.15s">
+        <div class="proj-header">
+          <div class="proj-name">RPA Ecommerce Scraper</div>
+          <span class="proj-category cat-automation">Automação</span>
+        </div>
+        <p class="proj-desc">10K produtos/dia com Playwright assíncrono + Redis. Alertas Slack/WhatsApp em &lt;5min após queda de preço.</p>
+        <div class="proj-techs">
+          <span class="proj-tech">Playwright</span>
+          <span class="proj-tech">Redis</span>
+          <span class="proj-tech">Slack API</span>
+          <span class="proj-tech">Docker</span>
+        </div>
+        <a href="https://github.com/Kaique-ML/ecommerce-rpa-scraper" target="_blank" class="proj-link">Ver no GitHub →</a>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:2.5rem;" class="reveal">
+      <a href="https://github.com/Kaique-ML" target="_blank" class="btn-outline">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        Ver todos os 20+ projetos no GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIÊNCIA -->
+<section id="experiencia">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Trajetória</div>
+      <h2 class="section-title">Experiência Profissional</h2>
+    </div>
+
+    <div class="exp-list">
+      <div class="exp-item reveal">
+        <div class="exp-period">2026 – Atual</div>
+        <div>
+          <div class="exp-company">Norte Tel</div>
+          <div class="exp-role">Analista de TI</div>
+          <p class="exp-desc">Desenvolvimento de soluções Python para automação de processos internos, criação de APIs com FastAPI, pipelines de dados e integração de sistemas. Aplicação de LLMs e automação para otimizar operações de TI.</p>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-period">2022 – 2023</div>
+        <div>
+          <div class="exp-company">Cairu</div>
+          <div class="exp-role">Assistente Administrativo</div>
+          <p class="exp-desc">Análise e organização de dados administrativos em Excel/Google Sheets, geração de relatórios gerenciais e automação de processos repetitivos com Python.</p>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-period">2024</div>
+        <div>
+          <div class="exp-company">Dotum Software House</div>
+          <div class="exp-role">Estagiário de Desenvolvimento</div>
+          <p class="exp-desc">Participação no ciclo de desenvolvimento de software, testes funcionais, documentação técnica e integração de automações e webhooks em sistemas internos.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formação -->
+    <div style="margin-top:4rem;" class="reveal">
+      <div class="section-label">Formação</div>
+      <h2 class="section-title" style="font-size:1.6rem">Educação</h2>
+    </div>
+
+    <div class="exp-list">
+      <div class="exp-item reveal">
+        <div class="exp-period">2026 – Cursando</div>
+        <div>
+          <div class="exp-company">FIAP</div>
+          <div class="exp-role">Tecnologia em Inteligência Artificial</div>
+          <p class="exp-desc">Graduação com foco em Machine Learning, Deep Learning, NLP, MLOps e aplicações de IA em negócios.</p>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-period">Concluído</div>
+        <div>
+          <div class="exp-company">IFRO – Campus Cacoal</div>
+          <div class="exp-role">Técnico em Informática</div>
+          <p class="exp-desc">Formação técnica com base em desenvolvimento de software, banco de dados, redes e programação.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE / STACK -->
+<section id="sobre">
+  <div class="container">
+    <div class="sobre-inner">
+      <div class="reveal">
+        <div class="section-label">Sobre mim</div>
+        <h2 class="section-title" style="font-size:2rem">Quem é o Gabriel?</h2>
+        <div class="sobre-text">
+          <p>Sou de <strong>Pimenta Bueno, Rondônia</strong>, profissional de tecnologia com foco em <strong>Inteligência Artificial</strong>, dados e automação. Atualmente curso <strong>Tecnologia em IA na FIAP</strong> e trabalho como Analista de TI na Norte Tel.</p>
+          <p>Tenho 3+ anos de experiência transformando problemas reais em soluções técnicas — desde pipelines de dados até agentes LLM em produção. Meu diferencial é unir <strong>visão de negócio com profundidade técnica</strong>.</p>
+          <p>Estou aberto a <strong>oportunidades de emprego</strong> (CLT ou PJ, presencial ou remoto) e também realizo <strong>freelances</strong> em projetos de IA, dados e automação.</p>
+          <p>Fora do trabalho: aprendizado contínuo, cursos na Alura e FIAP, e projetos open source no GitHub.</p>
+        </div>
+        <div style="margin-top:1.5rem;display:flex;gap:0.75rem;flex-wrap:wrap">
+          <a href="https://linkedin.com/in/gabriel-kaique-881475284" target="_blank" class="btn-primary" style="font-size:0.85rem">LinkedIn</a>
+          <a href="https://github.com/Kaique-ML" target="_blank" class="btn-outline" style="font-size:0.85rem">GitHub</a>
+        </div>
+      </div>
+
+      <div class="stack-section reveal" style="transition-delay:0.15s">
+        <div class="section-label" style="margin-bottom:1.25rem">Stack Técnica</div>
+
+        <div class="stack-group">
+          <div class="stack-group-label">IA & Machine Learning</div>
+          <div class="stack-pills">
+            <span class="stack-pill">LangChain</span>
+            <span class="stack-pill">CrewAI</span>
+            <span class="stack-pill">OpenAI API</span>
+            <span class="stack-pill">PyTorch</span>
+            <span class="stack-pill">HuggingFace</span>
+            <span class="stack-pill">Scikit-learn</span>
+            <span class="stack-pill">MLflow</span>
+            <span class="stack-pill">Pinecone</span>
+          </div>
+        </div>
+
+        <div class="stack-group">
+          <div class="stack-group-label">Dados & Engenharia</div>
+          <div class="stack-pills">
+            <span class="stack-pill">Python</span>
+            <span class="stack-pill">Pandas</span>
+            <span class="stack-pill">Polars</span>
+            <span class="stack-pill">SQL Avançado</span>
+            <span class="stack-pill">Apache Airflow</span>
+            <span class="stack-pill">dbt</span>
+            <span class="stack-pill">Power BI</span>
+            <span class="stack-pill">Streamlit</span>
+          </div>
+        </div>
+
+        <div class="stack-group">
+          <div class="stack-group-label">Backend & Deploy</div>
+          <div class="stack-pills">
+            <span class="stack-pill">FastAPI</span>
+            <span class="stack-pill">Docker</span>
+            <span class="stack-pill">PostgreSQL</span>
+            <span class="stack-pill">Redis</span>
+            <span class="stack-pill">GitHub Actions</span>
+            <span class="stack-pill">AWS</span>
+            <span class="stack-pill">pytest</span>
+          </div>
+        </div>
+
+        <div class="stack-group">
+          <div class="stack-group-label">Automação</div>
+          <div class="stack-pills">
+            <span class="stack-pill">Selenium</span>
+            <span class="stack-pill">Playwright</span>
+            <span class="stack-pill">n8n</span>
+            <span class="stack-pill">Celery</span>
+            <span class="stack-pill">Scrapy</span>
+            <span class="stack-pill">Slack API</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:3rem">
+      <div class="section-label">Vamos conversar</div>
+      <h2 class="section-title">Entre em Contato</h2>
+      <p class="section-desc" style="margin:0 auto">Aberto para oportunidades de emprego e freelance. Respondo em até 24h.</p>
+    </div>
+
+    <div class="contato-inner">
+      <div class="contato-items reveal">
+        <a href="mailto:portelsilvag@gmail.com" class="contato-item">
+          <div class="contato-icon">✉️</div>
+          <div>
+            <div class="contato-label">E-mail</div>
+            <div class="contato-value">portelsilvag@gmail.com</div>
+          </div>
+        </a>
+
+        <a href="tel:+5569999539568" class="contato-item">
+          <div class="contato-icon">📱</div>
+          <div>
+            <div class="contato-label">WhatsApp / Telefone</div>
+            <div class="contato-value">+55 (69) 99953-9568</div>
+          </div>
+        </a>
+
+        <a href="https://linkedin.com/in/gabriel-kaique-881475284" target="_blank" class="contato-item">
+          <div class="contato-icon">💼</div>
+          <div>
+            <div class="contato-label">LinkedIn</div>
+            <div class="contato-value">gabriel-kaique-881475284</div>
+          </div>
+        </a>
+
+        <a href="https://github.com/Kaique-ML" target="_blank" class="contato-item">
+          <div class="contato-icon">💻</div>
+          <div>
+            <div class="contato-label">GitHub</div>
+            <div class="contato-value">github.com/Kaique-ML</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="freelance-box reveal" style="transition-delay:0.15s">
+        <div class="freelance-badge">Disponível para Freelance</div>
+        <div class="freelance-title">Precisa de ajuda em um projeto?</div>
+        <p class="freelance-desc">Faço projetos de IA, automação, análise de dados e desenvolvimento Python para empresas e startups. Entrego com qualidade e documentação.</p>
+        <ul class="services-list">
+          <li>Chatbots e agentes com LLMs (RAG, CrewAI)</li>
+          <li>Dashboards e relatórios automáticos</li>
+          <li>Automação de processos (RPA, bots)</li>
+          <li>APIs e microsserviços Python</li>
+          <li>Pipelines de dados e ETL</li>
+          <li>Treinamento e fine-tuning de modelos</li>
+        </ul>
+        <a href="mailto:portelsilvag@gmail.com?subject=Projeto Freelance — Gabriel Kaique" class="btn-primary">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+          Solicitar Orçamento
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>Feito com dedicação por <a href="https://github.com/Kaique-ML">Gabriel Kaique Portel Silva</a> · Pimenta Bueno, RO · 2025</p>
+  <p style="margin-top:0.5rem">
+    <a href="https://linkedin.com/in/gabriel-kaique-881475284" target="_blank">LinkedIn</a> &nbsp;·&nbsp;
+    <a href="https://github.com/Kaique-ML" target="_blank">GitHub</a> &nbsp;·&nbsp;
+    <a href="mailto:portelsilvag@gmail.com">E-mail</a>
+  </p>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  function filterProjects(cat, btn) {
+    document.querySelectorAll('.proj-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.proj-card').forEach(card => {
+      const show = cat === 'all' || card.dataset.cat === cat;
+      card.style.display = show ? 'flex' : 'none';
+    });
+  }
+</script>
+
+</body>
+</html>
